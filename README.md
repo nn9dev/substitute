@@ -26,6 +26,13 @@ To compile for Mac (does not support bootstrapping/bundle loading/etc., only
 direct usage as a library):
 
     ./configure && make -j8
+    
+To compile for iOS simulator (for using with [simject](https://github.com/angelXwind/simject)):
+
+    ./configure --xcode-sdk=iphonesimulator --xcode-archs=x86_64 && make
+    mv out/libsubstitute.dylib out/CydiaSubstrate
+    codesign -f -s - out/CydiaSubstrate
+    
 
 In other situations, `./configure --help` should be informative.  I'm using a
 build system I wrote from scratch, intended to be extensible for many use cases
