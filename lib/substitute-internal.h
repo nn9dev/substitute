@@ -9,6 +9,10 @@
     __builtin_unreachable(); \
 } while(0)
 
+#define substitute_info(...) do { \
+    fprintf(stdout, __VA_ARGS__); \
+} while(0)
+
 #define EXPORT __attribute__ ((visibility("default")))
 #define UNUSED __attribute__((unused))
 

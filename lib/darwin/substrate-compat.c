@@ -47,7 +47,7 @@ void SubHookFunction(void *symbol, void *replace, void **result) {
     int ret = substitute_hook_functions(&hook, 1, NULL,
                                         SUBSTITUTE_NO_THREAD_SAFETY);
     if (ret) {
-        substitute_panic("SubHookFunction: substitute_hook_functions returned %s\n",
+        substitute_info("SubHookFunction: substitute_hook_functions returned %s\n",
                          substitute_strerror(ret));
     }
 }
@@ -85,7 +85,7 @@ void MSHookMessageEx(Class _class, SEL sel, IMP imp, IMP *result) {
 	if (class_getInstanceMethod(_class, sel) || class_getClassMethod(_class, sel)) {
 		SubHookMessageEx(_class, sel, imp, result);
 	} else {
-		substitute_panic("libsubstrate-shim: Tried to hook non-existent selector %s on class %s",
+		substitute_info("libsubstrate-shim: Tried to hook non-existent selector %s on class %s",
 			sel_getName(sel), class_getName(_class));
 			if (result) *result = NULL;
 	}
